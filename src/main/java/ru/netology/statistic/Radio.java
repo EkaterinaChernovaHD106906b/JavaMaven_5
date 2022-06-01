@@ -3,15 +3,19 @@ package ru.netology.statistic;
 public class Radio {
     private int currentNumber;
 
-    public void setCurrentNumber(int newCurrentNumber) {
-        if (newCurrentNumber < 0) {
-            return;
+
+    public void setCurrentNumber(int currentNumber) {
+        if (currentNumber < 0) {
+            currentNumber = 9;
+
         }
-        if (newCurrentNumber > 9) {
-            return;
+        if (currentNumber > 9) {
+            currentNumber = 0
+            ;
         }
-        currentNumber = newCurrentNumber;
+        this.currentNumber = currentNumber;
     }
+
 
     public int getCurrentNumber() {
         return currentNumber;
@@ -21,10 +25,10 @@ public class Radio {
 
     public void setCurrentSound(int newCurrentSound) {
         if (newCurrentSound < 0) {
-            return;
+            newCurrentSound = 10;
         }
         if (newCurrentSound > 10) {
-            return;
+            newCurrentSound = 0;
         }
         currentSound = newCurrentSound;
     }
@@ -34,26 +38,22 @@ public class Radio {
     }
 
     public void next() {
-        if (currentNumber < 9) {
-            currentNumber = currentNumber + 1;
-        }
+        currentNumber = currentNumber + 1;
 
-
-        if (currentNumber == 9) {
+        if (currentNumber > 9) {
             currentNumber = 0;
+
         }
     }
 
 
     public void prev() {
-        if (currentNumber > 1) {
+        {
             currentNumber = currentNumber - 1;
         }
-        if (currentNumber == 0) {
+        if (currentNumber < 0) {
             currentNumber = 9;
         }
-
-
     }
 
 
@@ -61,13 +61,13 @@ public class Radio {
         if (currentSound < 10) {
             currentSound = currentSound + 1;
         }
-        if (currentSound == 10) {
+        if (currentSound >= 10) {
             return;
         }
     }
 
     public void prevSound() {
-        if (currentSound > 1) {
+        if (currentSound >= 1) {
             currentSound = currentSound - 1;
         }
         if (currentSound == 0)
