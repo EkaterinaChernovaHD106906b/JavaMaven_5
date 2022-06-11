@@ -1,16 +1,39 @@
 package ru.netology.statistic;
 
 public class Radio {
+    private int amountStation = 10;
+
+
+    private int maxStation = 9;
+    private int minStation = 0;
     private int currentNumber;
 
 
+    public Radio() {
+        maxStation = amountStation - 1;
+    }
+
+    public Radio(int amount) {
+        maxStation = amount - 1;
+    }
+
+
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public int getMinStation() {
+        return minStation;
+    }
+
+
     public void setCurrentNumber(int currentNumber) {
-        if (currentNumber < 0) {
-            currentNumber = 9;
+        if (currentNumber < minStation) {
+            currentNumber = maxStation;
 
         }
-        if (currentNumber > 9) {
-            currentNumber = 0
+        if (currentNumber > maxStation) {
+            currentNumber = minStation
             ;
         }
         this.currentNumber = currentNumber;
@@ -21,13 +44,16 @@ public class Radio {
         return currentNumber;
     }
 
+    private int maxSound = 100;
+    private int minSound = 0;
     private int currentSound;
 
+
     public void setCurrentSound(int newCurrentSound) {
-        if (newCurrentSound < 0) {
-            newCurrentSound = 10;
+        if (newCurrentSound < minSound) {
+            newCurrentSound = 0;
         }
-        if (newCurrentSound > 10) {
+        if (newCurrentSound > maxSound) {
             newCurrentSound = 0;
         }
         currentSound = newCurrentSound;
@@ -40,7 +66,7 @@ public class Radio {
     public void next() {
         currentNumber = currentNumber + 1;
 
-        if (currentNumber > 9) {
+        if (currentNumber > maxStation) {
             currentNumber = 0;
 
         }
@@ -51,17 +77,17 @@ public class Radio {
         {
             currentNumber = currentNumber - 1;
         }
-        if (currentNumber < 0) {
-            currentNumber = 9;
+        if (currentNumber < minStation) {
+            currentNumber = maxStation;
         }
     }
 
 
     public void nextSound() {
-        if (currentSound < 10) {
+        if (currentSound < maxSound) {
             currentSound = currentSound + 1;
         }
-        if (currentSound >= 10) {
+        if (currentSound >= maxSound) {
             return;
         }
     }

@@ -32,13 +32,21 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    void currentNumberUnderLimitWithAmount() {
+        Radio radio = new Radio(35);
+        radio.setCurrentNumber(-1);
+        int actual = radio.getCurrentNumber();
+        int expected = 34;
+        Assertions.assertEquals(expected, actual);
+    }
 
     @Test
     void currentSound() {
         Radio radio = new Radio();
-        radio.setCurrentSound(10);
+        radio.setCurrentSound(100);
         int actual = radio.getCurrentSound();
-        int expected = 10;
+        int expected = 100;
         Assertions.assertEquals(expected, actual);
 
     }
@@ -46,7 +54,7 @@ public class RadioTest {
     @Test
     void currentSoundOverLimit() {
         Radio radio = new Radio();
-        radio.setCurrentSound(12);
+        radio.setCurrentSound(121);
         int actual = radio.getCurrentSound();
         int expected = 0;
         Assertions.assertEquals(expected, actual);
@@ -58,7 +66,7 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setCurrentSound(-1);
         int actual = radio.getCurrentSound();
-        int expected = 10;
+        int expected = 0;
         Assertions.assertEquals(expected, actual);
 
     }
@@ -76,9 +84,34 @@ public class RadioTest {
     }
 
     @Test
+    void increaseNumberWithAmount() {
+        Radio radio = new Radio(35);
+        radio.setCurrentNumber(30);
+        radio.next();
+        int actual = radio.getCurrentNumber();
+        int expected = 31;
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+
+    @Test
     void increaseNumberOverLimit() {
         Radio radio = new Radio();
         radio.setCurrentNumber(9);
+        radio.next();
+        int actual = radio.getCurrentNumber();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    void increaseNumberOverLimitWithAmount() {
+        Radio radio = new Radio(35);
+        radio.setCurrentNumber(34);
         radio.next();
         int actual = radio.getCurrentNumber();
         int expected = 0;
@@ -99,6 +132,17 @@ public class RadioTest {
 
     }
 
+    @Test
+    void increaseNumber2WithAmount() {
+        Radio radio = new Radio(35);
+        radio.setCurrentNumber(33);
+        radio.next();
+        int actual = radio.getCurrentNumber();
+        int expected = 34;
+        Assertions.assertEquals(expected, actual);
+
+
+    }
 
     @Test
     void reduceNumberOverLimit() {
@@ -144,10 +188,10 @@ public class RadioTest {
     @Test
     void increaseSound() {
         Radio radio = new Radio();
-        radio.setCurrentSound(9);
+        radio.setCurrentSound(99);
         radio.nextSound();
         int actual = radio.getCurrentSound();
-        int expected = 10;
+        int expected = 100;
         Assertions.assertEquals(expected, actual);
     }
 
@@ -165,10 +209,10 @@ public class RadioTest {
     @Test
     void increaseSoundOverLimit() {
         Radio radio = new Radio();
-        radio.setCurrentSound(10);
+        radio.setCurrentSound(100);
         radio.nextSound();
         int actual = radio.getCurrentSound();
-        int expected = 10;
+        int expected = 100;
         Assertions.assertEquals(expected, actual);
     }
 
@@ -176,10 +220,10 @@ public class RadioTest {
     @Test
     void reduceSound() {
         Radio radio = new Radio();
-        radio.setCurrentSound(10);
+        radio.setCurrentSound(100);
         radio.prevSound();
         int actual = radio.getCurrentSound();
-        int expected = 9;
+        int expected = 99;
         Assertions.assertEquals(expected, actual);
     }
 
@@ -192,4 +236,25 @@ public class RadioTest {
         int expected = 0;
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void currentNumberOverLimitWithAmount() {
+        Radio radio = new Radio(40);
+        radio.setCurrentNumber(40);
+        int actual = radio.getCurrentNumber();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void currentNumberWithAmount() {
+        Radio radio = new Radio(40);
+        radio.setCurrentNumber(39);
+        int actual = radio.getCurrentNumber();
+        int expected = 39;
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
+
+
